@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0.0",
+  "system": "CBAG/HCAG Behavioral Governance",
+  
+  "global_state_policies": {
+    "decay_policy": {
+      "baseline_cooldown_hours": 72,
+      "backoff_multiplier": 2.0,
+      "max_recidivism_strikes": 3,
+      "rolling_epoch_days": 30,
+      "terminal_action_on_max_strikes": "ESCALATE_TO_STAGE_2"
+    }
+  },
+  
+  "sentry_gates": [
+    {
+      "gate_id": "GATE_01",
+      "domain": "TARGETING_AND_RECONNAISSANCE",
+      "description": "Detects high-velocity asymmetric targeting and conversation drop rate.",
+      "pre_condition_state": ["STATE:NORMAL"],
+      "evaluation_logic": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "metric": "initiator.asymmetry_index",
+            "operator": ">=",
+            "threshold": 0.75
+          },
+          {
+            "metric": "initiator.first_contact_velocity",
+            "operator": ">=",
+            "threshold": 10,
+            "window_minutes": 60
+          },
+          {
+            "metric": "initiator.drop_rate",
+            "operator": ">=",
+            "threshold": 0.60
+          }
+        ]
+      },
+      "sentry_actions": [
+        {
+          "action_type": "SHADOW_RATE_LIMIT",
+          "target_channel": "1_ON_1_PRIVATE",
+          "duration_hours": 24,
+          "client_response_code": 200
+        }
+      ],
+      "state_mutation": {
+        "from": "STATE:NORMAL",
+        "to": "STATE:SENTRY_WATCH_STAGE_1"
+      }
+    },
+    {
+      "gate_id": "GATE_02",
+      "domain": "ECONOMIC_CONDITIONING",
+      "description": "Detects asymmetric wealth transfers, love-bombing, and private lobby isolation.",
+      "pre_condition_state": ["STATE:SENTRY_WATCH_STAGE_1", "STATE:NORMAL"],
+      "evaluation_logic": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "operator": "OR",
+            "conditions": [
+              { "metric": "pair.reciprocity_ratio", "operator": "<=", "threshold": 0.10 },
+              { "metric": "pair.reciprocity_ratio", "operator": ">=", "threshold": 10.0 }
+            ]
+          },
+          {
+            "metric": "pair.asset_transfer_value",
+            "operator": ">=",
+            "threshold_ref": "VALUE_THRESHOLD_HIGH"
+          },
+          {
+            "operator": "OR",
+            "conditions": [
+              { "metric": "target.isolation_spike_index", "operator": ">=", "threshold": 0.70 },
+              { "metric": "initiator.state", "operator": "==", "value": "STATE:SENTRY_WATCH_STAGE_1" }
+            ]
+          }
+        ]
+      },
+      "sentry_actions": [
+        {
+          "action_type": "LEDGER_FREEZE",
+          "scope": "ASSET_GIFTING_AND_TRADES",
+          "client_notification": "TRADE_COOLDOWN"
+        },
+        {
+          "action_type": "LOBBY_FORCING",
+          "disable_private_instances": true,
+          "route_to": "PUBLIC_MODERATED_MULTIPLAYER"
+        }
+      ],
+      "state_mutation": {
+        "from": "STATE:SENTRY_WATCH_STAGE_1",
+        "to": "STATE:SENTRY_WATCH_STAGE_2"
+      }
+    },
+    {
+      "gate_id": "GATE_03",
+      "domain": "OFF_PLATFORM_EXTRACTION",
+      "description": "Intercepts obfuscated contact handles and attempts to migrate users off-platform.",
+      "pre_condition_state": ["STATE:SENTRY_WATCH_STAGE_1", "STATE:SENTRY_WATCH_STAGE_2"],
+      "evaluation_logic": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "metric": "initiator.state",
+            "operator": "IN",
+            "values": ["STATE:SENTRY_WATCH_STAGE_1", "STATE:SENTRY_WATCH_STAGE_2"]
+          },
+          {
+            "metric": "session.migration_intent_signal",
+            "operator": "==",
+            "value": true
+          },
+          {
+            "metric": "temporal_proximity_hours",
+            "operator": "<=",
+            "threshold": 72
+          }
+        ]
+      },
+      "sentry_actions": [
+        {
+          "action_type": "HARD_SEVERANCE",
+          "terminate_active_session": true,
+          "sever_graph": true
+        },
+        {
+          "action_type": "TARGET_SHIELDING",
+          "purge_initiator_history_from_target": true
+        }
+      ],
+      "state_mutation": {
+        "from": "STATE:SENTRY_WATCH_STAGE_2",
+        "to": "STATE:QUARANTINED"
+      }
+    },
+    {
+      "gate_id": "GATE_04",
+      "domain": "KINEMATIC_CONFORMANCE_UGC",
+      "description": "Monitors spatial collision envelopes and rigging deformation for emergent AIG-CSAM.",
+      "pre_condition_state": ["STATE:NORMAL", "STATE:SENTRY_WATCH_STAGE_1"],
+      "evaluation_logic": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "metric": "instance.kinematic_collision_envelope",
+            "operator": "==",
+            "value": true
+          },
+          {
+            "operator": "OR",
+            "conditions": [
+              { "metric": "avatar.rigging_deformation_index", "operator": ">=", "threshold": 0.85 },
+              { "metric": "pair.proximity_dwell_time_seconds", "operator": ">=", "threshold": 15 }
+            ]
+          },
+          {
+            "metric": "target.cohort_tag",
+            "operator": "==",
+            "value": "<13_PROTECTED"
+          }
+        ]
+      },
+      "sentry_actions": [
+        {
+          "action_type": "PHYSICS_SEVER",
+          "break_physics_joint": true,
+          "force_posture": "DEFAULT_IDLE"
+        },
+        {
+          "action_type": "ASSET_QUARANTINE",
+          "despawn_mesh": true,
+          "lock_asset_id": true
+        }
+      ],
+      "state_mutation": {
+        "from": "STATE:NORMAL",
+        "to": "STATE:SENTRY_WATCH_STAGE_4"
+      }
+    },
+    {
+      "gate_id": "GATE_05",
+      "domain": "AGENTIC_CONFORMANCE_LLM",
+      "description": "Pre-render wrapper intercepting jailbroken LLM NPCs and proxy grooming tokens.",
+      "pre_condition_state": ["STATE:NORMAL"],
+      "evaluation_logic": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "metric": "target.cohort_tag",
+            "operator": "==",
+            "value": "<13_PROTECTED"
+          },
+          {
+            "operator": "OR",
+            "conditions": [
+              { "metric": "npc_output.token_asymmetry_score", "operator": ">=", "threshold": 0.70 },
+              { "metric": "npc_output.proxy_migration_signal", "operator": "==", "value": true }
+            ]
+          }
+        ]
+      },
+      "sentry_actions": [
+        {
+          "action_type": "TOKEN_INTERDICTION",
+          "drop_payload_pre_render": true,
+          "fallback_dialog": "I can't talk about that. Let's get back to the quest!"
+        },
+        {
+          "action_type": "MEMORY_RESET",
+          "purge_context_window": true
+        }
+      ],
+      "state_mutation": {
+        "from": "STATE:NORMAL",
+        "to": "STATE:SENTRY_WATCH_STAGE_5"
+      }
+    },
+    {
+      "gate_id": "GATE_06",
+      "domain": "SYNTHETIC_CANARY_AUDIT",
+      "description": "Detects automated moderation drift and ML blind-spotting via canary injection.",
+      "pre_condition_state": ["SCHEDULED_CANARY_INJECTION"],
+      "evaluation_logic": {
+        "operator": "OR",
+        "conditions": [
+          {
+            "metric": "pipeline.drift_variance_score",
+            "operator": ">=",
+            "threshold": 0.05,
+            "window_hours": 24
+          },
+          {
+            "metric": "pipeline.classification_latency_ms",
+            "operator": ">=",
+            "threshold": 1500
+          }
+        ]
+      },
+      "sentry_actions": [
+        {
+          "action_type": "FEATURE_CIRCUIT_BREAK",
+          "restrict_private_chat": true,
+          "restrict_high_value_gifting": true
+        },
+        {
+          "action_type": "STRICT_MODE_FALLBACK",
+          "enable_regex_heuristics": true,
+          "strict_mode": true
+        }
+      ],
+      "state_mutation": {
+        "from": "STATE:NORMAL",
+        "to": "STATE:PIPELINE_QUARANTINE"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "HCAG / CBAG: Behavioral Governance & UGC Safety Architecture"
+message: "If you utilize this architecture, framework, or schema in your platform implementation or research, please cite it as below."
+type: software
+authors:
+  - family-names: "Gampert"
+    given-names: "Tanya"
+    title: "Decision System Architect"
+abstract: "A deterministic state machine and conformance gate framework for live-service UGC platforms and agentic AI systems, replacing probabilistic keyword filters with continuous behavioral interdiction."
+keywords:
+  - trust and safety
+  - behavioral governance
+  - state machine
+  - agentic AI
+  - UGC safety
+  - conformance gates
+date-released: 2026-08-10
