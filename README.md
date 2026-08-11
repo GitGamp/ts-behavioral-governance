@@ -91,7 +91,7 @@ Predatory behavior in live-service UGC platforms weaponizes two intersecting rea
 ### The Neurobiological "Imbalance Model"
 Developmental neuroscience demonstrates that during adolescence and emerging adulthood (ages 16–25), subcortical reward circuitry matures rapidly while the prefrontal cortex (**VLPFC**), responsible for impulse control and risk evaluation, develops gradually. 
 *   **Cognitive Vulnerability:** Young users are biologically predisposed to sensation-seeking, FOMO, and compliance under social pressure.
-*   **High-Risk Cohorts:** These risks are severely amplified in neurodivergent youth and individuals with Mild-to-Borderline Intellectual Disability (**MBID**) or Acquired Brain Injury (**ABI**), who display profound deficits in peer-resistance and risk awareness.
+*   **High-Risk Cohorts:** These risks are severely amplified in neurodivergent youth and individuals with Mild-to-Borderline Intellectual Disability (**MBID**), or Acquired Brain Injury (**ABI**), who display profound deficits in peer-resistance and risk awareness.  These same considerations apply across all age groups, not just youth.
 
 ### Weaponizing the Virtual Economy (Social Exchange Theory)
 Predators exploit these biological imbalances through manipulative applications of **Social Exchange Theory**:
