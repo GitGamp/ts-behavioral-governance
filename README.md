@@ -101,7 +101,7 @@ Predators exploit these biological imbalances through manipulative applications 
 
 ---
 
-## 3. The Solution: HCAG Deterministic Behavioral Sentry Gates
+## 3. The Solution: Human-Centered Agentic Governance (HCAG) Deterministic Behavioral Sentry Gates
 
 To eliminate the liability of the two-stage pipeline, platforms must replace subjective, reactive moderation with **Human-Centric & Conformance-Based Agentic Governance (HCAG)**—deploying non-bypassable, deterministic logic gates that intercept exploitation at the behavioral and economic layers.
 
@@ -122,7 +122,7 @@ Age/Authority Asymmetry   -->   Asymmetric Gifting / Favors -->   Obfuscated Rou
 
 ---
 
-## 4. CBAG Extension: Governing AI-Generated Threats & Dynamic UGC
+## 4. Conformance-Based Agentic Governance (CBAG) Extension: Governing AI-Generated Threats & Dynamic UGC
 
 As generative AI accelerates the production of AI-generated child sexual abuse material (**AIG-CSAM**) and synthetic deepfakes, static asset hashing (e.g., PhotoDNA) is no longer sufficient. 
 

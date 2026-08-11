@@ -80,6 +80,8 @@ Here is how the loop operates, and how we catch the data exhaust at every stage.
 
     - **The Sentry Gate:** HCAG doesn't just try to decode the obfuscation; it looks at the timeline. If a routing attempt (even a highly obfuscated one) immediately follows a Stage 1 Anomaly and a Stage 2 Debt Pattern, the system triggers a proactive block, severing the connection before extraction happens.
 
+---
+
 ## 3. Why Structural Governance Beats "Point-in-Time" Verification
 
 When platform safety relies on guarding the front door, a single successful biometric bypass grants the bad actor **unrestricted, trusted lateral movement** across the entire child ecosystem. Once inside, traditional keyword regex filters fail because the attacker initiates a progressive operant conditioning loop rather than emitting explicit text strings.

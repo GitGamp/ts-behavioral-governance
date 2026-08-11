@@ -1,15 +1,15 @@
-# 03. CBAG AI Sentry Extension: Governing Dynamic UGC & Algorithmic Drift
+# 03. Conformance-Based Agentic Governance (CBAG) AI Sentry Extension: Governing Dynamic UGC & Algorithmic Drift
 ---
 
 ## 1. Executive Summary: Extending Deterministic Governance to Machine Actors
 
-While **Human-Centric & Conformance-Based Agentic Governance (HCAG)** intercepts human-to-human exploitation loops, modern live-service user-generated content (UGC) platforms are increasingly populated by synthetic actors: generative 3D meshes, algorithmic non-player characters (NPCs), and Large Language Model (LLM) companion agents.
+While **Human-Centered Agentic Governance (HCAG)** intercepts human-to-human exploitation loops, modern live-service user-generated content (UGC) platforms are increasingly populated by synthetic actors: generative 3D meshes, algorithmic non-player characters (NPCs), and Large Language Model (LLM) companion agents.
 
 Legacy trust and safety (T&S) pipelines rely on static asset hashing (e.g., MD5, PhotoDNA) and probabilistic prompt guardrails. These controls fail catastrophically in real-time, composable environments where individually benign assets can be chained into emergent abuse, and where conversational AI agents can be jailbroken to act as predatory proxies.
 
 The **Conformance-Based Agentic Governance (CBAG)** extension applies deterministic behavioral and kinematic boundaries to synthetic and algorithmic actors, ensuring that AI-driven features remain mathematically bounded by platform safety invariants.
 
-> **Architectural Note: The Curb-Cut Effect of Behavioral Governance**: While this framework utilizes minor and `<13` cohorts as its primary operational case study due to high regulatory liability and developmental vulnerability, the HCAG/CBAG algorithmic engine is demographically invariant. The deterministic sentry gates (`Asymmetry_Index`, `Reciprocity_Ratio`, `Migration_Intent_Signal`) intercept any operant conditioning, financial extortion, or synthetic exploitation loop across adult, teen, and child cohorts alike.
+> **Architectural Note: The Curb-Cut Effect of Behavioral Governance**: *While this framework utilizes minor and `<13` cohorts as its primary operational case study due to high regulatory liability and developmental vulnerability, the HCAG/CBAG algorithmic engine is demographically invariant. The deterministic sentry gates* (`Asymmetry_Index`, `Reciprocity_Ratio`, `Migration_Intent_Signal`) *intercept any operant conditioning, financial extortion, or synthetic exploitation loop across adult, teen, and child cohorts alike.*
 
 ---
 
@@ -115,7 +115,7 @@ When $D_{var}$ exceeds threshold $\theta_{drift}$, the system registers an autom
 ### Deterministic IF/THEN Logic
 ```
 IF
-  Pipeline.Drift_Variance_Score >= 0.05  [More than 5% Canary Miss Rate]
+  Pipeline.Drift_Variance_Score >= 0.05 # More than 5% Canary Miss Rate
   OR
   Pipeline.Classification_Latency >= 1500_MS
 THEN

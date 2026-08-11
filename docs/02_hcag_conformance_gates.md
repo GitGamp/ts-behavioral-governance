@@ -1,10 +1,10 @@
-# 02. HCAG Conformance Gates: Deterministic Interdiction Logic
+# 02. Human-Centered Agentic Governance (HCAG) Conformance Gates: Deterministic Interdiction Logic
 
 ---
 
 ## 1. Executive Summary: From Inference to Deterministic Control
 
-Legacy safety architectures attempt to infer bad intent from static content strings. The Human-Centric & Conformance-Based Agentic Governance (HCAG) framework replaces inference with deterministic state gates.
+Legacy safety architectures attempt to infer bad intent from static content strings. The Human-Centric Agentic Governance (HCAG) framework replaces inference with deterministic state gates.
 
 By evaluating continuous telemetry across three mechanical dimensions—Account Asymmetry, Economic Reciprocity, and Graph Topology—the system enforces hard boundaries that break the operational requirements of online grooming loops without relying on text sentiment or single-timestamp biometric checks.
 
@@ -36,7 +36,7 @@ $$\mathcal{S}_{total} = \left[ w_1 \cdot \text{AI}_{i,j} + w_2 \cdot (1 - \text{
 
 The deterministic IF/THEN gates function as step-function thresholds ($\theta$) applied to $\mathcal{S}_{total}$:
 
-$$\text{Gate Action} = \begin{cases} \text{No Action}, & \text{if } \mathcal{S}_{total} < \theta_1 \\ \text{Stage 1 Trap (Rate-Limit)}, & \text{if } \theta_1 \le \mathcal{S}_{total} < \theta_2 \\ \text{Stage 2 Interdiction (Ledger Freeze)}, & \text{if } \theta_2 \le \mathcal{S}_{total} < \theta_3 \\ \text{Stage 3 Severance (Terminal Kill)}, & \text{if } \mathcal{S}_{total} \ge \theta_3 \end{cases}$$
+$$\text{Gate Action} = \begin{cases} \text{No Action}, & \text{if } \mathcal{S}_{total} < \theta_1 \\\\ \text{Stage 1 Trap (Rate-Limit)}, & \text{if } \theta_1 \le \mathcal{S}_{total} < \theta_2 \\\\ \text{Stage 2 Interdiction (Ledger Freeze)}, & \text{if } \theta_2 \le \mathcal{S}_{total} < \theta_3 \\\\ \text{Stage 3 Severance (Terminal Kill)}, & \text{if } \mathcal{S}_{total} \ge \theta_3 \end{cases}$$
 
 ---
 
@@ -69,7 +69,7 @@ THEN
 - **Action 02 (State Flagging)**: Tag Initiator account with internal state `STATE:SENTRY_WATCH_STAGE_1`.
 - **Action 03 (Zero Feedback)**: Return standard `200 OK` client-side responses so the actor cannot reverse-engineer the rate-limit threshold.
 
-> **Anti-Gaming Note**: *State decay is non-linear; accounts that repeatedly trigger Gate 01 within a rolling 30-day epoch face exponential cooldown backoffs (72h $\to$ 144h $\to$ 288h), with a third strike forcing automatic escalation to Gate 02 interdiction.*
+> **Anti-Gaming Note**: *State decay is non-linear; accounts that repeatedly trigger Gate 01 within a rolling 30-day epoch face exponential cooldown backoffs (72h → 144h → 288h), with a third strike forcing automatic escalation to Gate 02 interdiction.*
 
 ---
 
@@ -86,7 +86,7 @@ Neutralize "love-bombing" and psychological debt generation by monitoring asymme
 ### Deterministic IF/THEN Logic
 ```
 IF
-  (Pair.Reciprocity_Ratio <= 0.10 OR Pair.Reciprocity_Ratio >= 10.0)  [Lopsided Transfer]
+  (Pair.Reciprocity_Ratio <= 0.10 OR Pair.Reciprocity_Ratio >= 10.0) # Lopsided Transfer
   AND
   Pair.Asset_Transfer_Value >= VALUE_THRESHOLD_HIGH
   AND
@@ -145,7 +145,7 @@ In the event of concurrent or highly compressed gate triggers ($\Delta t < 300\t
 
 ## 7. Orthogonal Gate Invariants & Out-of-Order Execution
 
-Legacy pipelines often fail when attackers execute steps out of sequence. HCAG Conformance Gates operate as orthogonal boundary invariants—each gate evaluates independent structural conditions that do not strictly require prerequisite sequential flags to trigger interdiction:
+Legacy pipelines often fail when attackers execute steps out of sequence. HCAG Conformance Gates operate as orthogonal boundary invariants — each gate evaluates independent structural conditions that do not strictly require prerequisite sequential flags to trigger interdiction:
 
 1.   **Unearned Trust Anomaly** (Skipping Gate 01 $\to$ Gate 02): Executing high-value asymmetric asset transfers (`Asset_Transfer_Value >= VALUE_THRESHOLD_HIGH`) with zero prior communication or co-play history applies a multiplier ($\mathcal{M}_{seq} = 2.5$) to the anomaly score, triggering STAGE_2_INTERDICTION immediately without Gate 01 firing.
 
